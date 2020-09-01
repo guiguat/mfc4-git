@@ -1,13 +1,9 @@
 name: "CI"
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: docker build -t nestjs-ci .
-      - run: docker exec nestjs-ci npm run test
+      - run: docker run nestjs-ci
